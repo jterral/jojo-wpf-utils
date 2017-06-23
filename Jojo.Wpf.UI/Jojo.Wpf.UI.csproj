@@ -53,9 +53,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="..\Common\AssemblyCompanyInfo.cs">
+      <Link>Properties\AssemblyCompanyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Common\AssemblyVersionInfo.cs">
+      <Link>Properties\AssemblyVersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Helpers.Bindings\OneWayBinding.cs" />
+    <Compile Include="Helpers.Bindings\TwoWayBinding.cs" />
     <Compile Include="Helpers.MVVM\RelayCommand.cs" />
     <Compile Include="Helpers.MVVM\ViewModelBase.cs" />
+    <Compile Include="Helpers.UI\UiServices.cs" />
+    <Compile Include="Helpers\EventArgsOfT.cs" />
     <Compile Include="Resources\Internationalization\ExamplesMsg.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -66,6 +75,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HomeMsg.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\RectViewModel.cs" />
     <Compile Include="Views\Examples\ExamplesView.xaml.cs">
       <DependentUpon>ExamplesView.xaml</DependentUpon>
     </Compile>
@@ -100,38 +110,25 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Internationalization\ExamplesMsg.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ExamplesMsg.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Internationalization\HomeMsg.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>HomeMsg.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Jojo.Wpf.Converters\Jojo.Wpf.Converters.csproj">
+      <Project>{ea78242a-44ba-4f06-b29c-1261b70fe4fd}</Project>
+      <Name>Jojo.Wpf.Converters</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

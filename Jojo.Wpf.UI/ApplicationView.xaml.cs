@@ -1,4 +1,6 @@
-﻿using Jojo.Wpf.UI.Views;
+﻿using Jojo.Wpf.UI.Helpers;
+using Jojo.Wpf.UI.ViewModels;
+using Jojo.Wpf.UI.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -157,9 +159,42 @@ namespace Jojo.Wpf.UI
             {
                 // Création d'une nouvelle vue
                 homeVm = new HomeViewModel();
+                homeVm.NavigateToExample += OnNavigateToExample;
             }
 
             ChangeViewModel((IPageViewModel)homeVm);
+        }
+
+        /// <summary>
+        /// Se produit lors de la demande d'affichage de la page exemple.
+        /// </summary>
+        /// <param name="sender">L'objet à l'origine de l'évènement.</param>
+        /// <param name="e">Les paramètres de l'évènement.</param>
+        private void OnNavigateToExample(object sender, EventArgs e)
+        {
+            if (sender == null)
+            {
+                throw new ArgumentNullException("sender");
+            }
+
+            if (e == null)
+            {
+                throw new ArgumentNullException("EventArgs[e]");
+            }
+
+            ExamplesViewModel exampleVm = PageViewModels.FirstOrDefault(vm => vm.GetType() == typeof(ExamplesViewModel)) as ExamplesViewModel;
+            if (exampleVm == null)
+            {
+                exampleVm = new ExamplesViewModel();
+            }
+
+            EventArgs<RectViewModel> args = e as EventArgs<RectViewModel>;
+            if (args != null)
+            {
+                Task.Run(() => exampleVm.Load(args.Value));
+            }
+
+            ChangeViewModel((IPageViewModel)exampleVm);
         }
     }
 }

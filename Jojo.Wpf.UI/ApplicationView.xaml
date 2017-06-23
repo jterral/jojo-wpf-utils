@@ -5,6 +5,7 @@
         xmlns:Views="clr-namespace:Jojo.Wpf.UI.Views"
         WindowStartupLocation="CenterScreen"
         Width="1600" Height="900"
+        Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
         Title="{b:OneWayBinding Path=CustomWindowTitle}">
 
     <Window.Resources>
