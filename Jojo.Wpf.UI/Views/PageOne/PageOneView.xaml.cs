@@ -5,12 +5,12 @@ namespace Jojo.Wpf.UI.Views
     /// <summary>
     /// Logique d'interaction pour ExamplesView.xaml
     /// </summary>
-    public partial class ExamplesView : UserControl
+    public partial class PageOneView : UserControl
     {
         /// <summary>
-        /// Initialise une nouvelle instance de la classe <see cref="ExamplesView"/>.
+        /// Initialise une nouvelle instance de la classe <see cref="PageOneView"/>.
         /// </summary>
-        public ExamplesView()
+        public PageOneView()
         {
             InitializeComponent();
         }

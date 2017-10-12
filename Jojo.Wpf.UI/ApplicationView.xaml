@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:b="clr-namespace:Jojo.Wpf.UI.Helpers.Bindings"
         xmlns:Views="clr-namespace:Jojo.Wpf.UI.Views"
+        xmlns:examplesViews="clr-namespace:Jojo.Wpf.UI.Views.Examples"
         WindowStartupLocation="CenterScreen"
         Width="1600" Height="900"
         Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
@@ -15,14 +16,27 @@
         </DataTemplate>
 
         <!-- Examples Page -->
-        <DataTemplate DataType="{x:Type Views:ExamplesViewModel}">
-            <Views:ExamplesView />
+        <DataTemplate DataType="{x:Type Views:PageOneViewModel}">
+            <Views:PageOneView />
         </DataTemplate>
     </Window.Resources>
 
     <Grid Name="ApplicationMainGrid">
-        <!-- Displayed page -->
-        <ContentControl Content="{Binding Path=CurrentPageViewModel}" />
+        <TabControl>
+            <TabItem Header="navigation examples">
+                <!-- Navigation displayed page -->
+                <ContentControl Content="{Binding Path=CurrentPageViewModel}" />
+            </TabItem>
+
+            <!-- Examples pages -->
+            <TabItem Header="async properties">
+                <examplesViews:AsyncPropertiesView />
+            </TabItem>
+
+            <TabItem Header="datagrids">
+                <examplesViews:DataGridsExample />
+            </TabItem>
+        </TabControl>
     </Grid>
 
 </Window>

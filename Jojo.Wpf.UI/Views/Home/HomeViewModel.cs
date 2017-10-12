@@ -102,10 +102,7 @@ namespace Jojo.Wpf.UI.Views
         /// </summary>
         private void NavigateToExampleView()
         {
-            if (NavigateToExample != null)
-            {
-                NavigateToExample(this, new EventArgs<RectViewModel>(new RectViewModel("My Name", 50, 80, 400, 400)));
-            }
+            NavigateToExample?.Invoke(this, new EventArgs<RectViewModel>(new RectViewModel("My Name", 50, 80, 400, 400)));
         }
 
         /// <summary>

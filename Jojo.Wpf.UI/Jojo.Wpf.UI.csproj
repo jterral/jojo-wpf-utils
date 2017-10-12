@@ -76,10 +76,17 @@
       <DependentUpon>HomeMsg.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\RectViewModel.cs" />
-    <Compile Include="Views\Examples\ExamplesView.xaml.cs">
-      <DependentUpon>ExamplesView.xaml</DependentUpon>
+    <Compile Include="Views.Examples\AsyncProperties\AsyncPropertiesView.xaml.cs">
+      <DependentUpon>AsyncPropertiesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Examples\ExamplesViewModel.cs" />
+    <Compile Include="Views.Examples\AsyncProperties\AsyncPropertiesViewModel.cs" />
+    <Compile Include="Views.Examples\DataGrids\DataGridsExample.xaml.cs">
+      <DependentUpon>DataGridsExample.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PageOne\PageOneView.xaml.cs">
+      <DependentUpon>PageOneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PageOne\PageOneViewModel.cs" />
     <Compile Include="Views\Home\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
@@ -97,7 +104,15 @@
       <DependentUpon>ApplicationView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\Examples\ExamplesView.xaml">
+    <Page Include="Views.Examples\AsyncProperties\AsyncPropertiesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views.Examples\DataGrids\DataGridsExample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PageOne\PageOneView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

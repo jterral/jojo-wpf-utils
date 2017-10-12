@@ -5,17 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Jojo.Wpf.UI
 {
@@ -73,10 +64,7 @@ namespace Jojo.Wpf.UI
         /// <param name="propertyName">La propriété qui a été modifiée.</param>
         protected void OnPropertyChanged(string propertyName)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
 
@@ -154,15 +142,15 @@ namespace Jojo.Wpf.UI
         /// </summary>
         private void LoadHomePage()
         {
-            HomeViewModel homeVm = PageViewModels.FirstOrDefault(vm => vm.GetType() == typeof(HomeViewModel)) as HomeViewModel;
-            if (homeVm == null)
+            HomeViewModel viewModel = PageViewModels.FirstOrDefault(vm => vm.GetType() == typeof(HomeViewModel)) as HomeViewModel;
+            if (viewModel == null)
             {
                 // Création d'une nouvelle vue
-                homeVm = new HomeViewModel();
-                homeVm.NavigateToExample += OnNavigateToExample;
+                viewModel = new HomeViewModel();
+                viewModel.NavigateToExample += OnNavigateToExample;
             }
 
-            ChangeViewModel((IPageViewModel)homeVm);
+            ChangeViewModel((IPageViewModel)viewModel);
         }
 
         /// <summary>
@@ -173,28 +161,23 @@ namespace Jojo.Wpf.UI
         private void OnNavigateToExample(object sender, EventArgs e)
         {
             if (sender == null)
-            {
-                throw new ArgumentNullException("sender");
-            }
+                throw new ArgumentNullException(nameof(sender));
 
             if (e == null)
+                throw new ArgumentNullException(nameof(e));
+
+            PageOneViewModel viewModel = PageViewModels.FirstOrDefault(vm => vm.GetType() == typeof(PageOneViewModel)) as PageOneViewModel;
+            if (viewModel == null)
             {
-                throw new ArgumentNullException("EventArgs[e]");
+                viewModel = new PageOneViewModel();
             }
 
-            ExamplesViewModel exampleVm = PageViewModels.FirstOrDefault(vm => vm.GetType() == typeof(ExamplesViewModel)) as ExamplesViewModel;
-            if (exampleVm == null)
+            if (e is EventArgs<RectViewModel> args)
             {
-                exampleVm = new ExamplesViewModel();
+                Task.Run(() => viewModel.Load(args.Value));
             }
 
-            EventArgs<RectViewModel> args = e as EventArgs<RectViewModel>;
-            if (args != null)
-            {
-                Task.Run(() => exampleVm.Load(args.Value));
-            }
-
-            ChangeViewModel((IPageViewModel)exampleVm);
+            ChangeViewModel((IPageViewModel)viewModel);
         }
     }
 }

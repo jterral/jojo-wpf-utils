@@ -10,7 +10,7 @@ namespace Jojo.Wpf.UI.Views
     /// <summary>
     /// Vue modèle de la page exemples.
     /// </summary>
-    public class ExamplesViewModel : ViewModelBase, IPageViewModel
+    public class PageOneViewModel : ViewModelBase, IPageViewModel
     {
         /// <summary>
         /// Obtient le titre de la page exemples.
